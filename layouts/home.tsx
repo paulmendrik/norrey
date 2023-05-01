@@ -1,10 +1,10 @@
 import React, { Fragment } from 'react';
 import { motion } from 'framer-motion';
 import { Header } from '../components';
-import { Box, Image} from '@chakra-ui/react';
+import { Box} from '@chakra-ui/react';
 
 
-export const HomeLayout = () => {
+export const HomeLayout = ({ children }: any) => {
 
 
 
@@ -23,8 +23,7 @@ position={'relative'}
 top={'0'}
 >
 <Header/>
-<Image boxSize={'full'} position={'relative'} objectFit='fill' src='andy.jpeg'  />
-
+{children}
 </Box>
 
 </motion.div>

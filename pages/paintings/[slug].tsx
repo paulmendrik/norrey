@@ -5,7 +5,7 @@ import groq from 'groq';
 import { PaintingLayout } from '../../layouts';
 import { Glider } from '../../components';
 import { Close } from '../../components';
-import { AspectRatio, Box, Card, Flex, Image, Text, VStack } from '@chakra-ui/react';
+import { AspectRatio, Box, Card, Image, Flex, Text, VStack } from '@chakra-ui/react';
 import { urlFor } from '../../lib/api';
 import client from '../../lib/sanity';
 
@@ -64,8 +64,12 @@ transition={{ delay: 0.1 , type: 'tween', ease: 'linear'}}
 </VStack>
 </Flex>
 </Box>
+<Box className='painting'  width={['100%','60%']}>
+<AspectRatio ratio={1}>
+<Image src={urlFor(data.image).url()} />
+</AspectRatio>
+</Box>
 
-<Glider data={data} />
 
 </Card> 
 </motion.div>
