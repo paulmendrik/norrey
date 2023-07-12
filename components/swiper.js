@@ -3,7 +3,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Thumbs } from 'swiper';
 import 'swiper/css';
 import { urlFor } from '../lib/api';
-import { AbsoluteCenter, Box, Image, HStack, Square, Text} from '@chakra-ui/react';
+import { Box, Image, Stack, Square} from '@chakra-ui/react';
 
 export const Glider = ({ data }) => {
 
@@ -33,23 +33,24 @@ modules={[Thumbs]}
 watchSlidesProgress
 onSwiper={setThumbsSwiper}
 slidesPerView={4}
+spaceBetween={4}
 >
-<HStack>
+
+
+<Stack direction={'row'} >
 {data.slides.map((slide, i) =>
-<SwiperSlide key={i}  >
-<Square 
-className='thumb' 
-size={['74px','80px']}
+<SwiperSlide key={i} >
+<Square  
+size={['80px','80px']}
 backgroundImage={urlFor(slide.image.asset).url()} 
 backgroundSize={'cover'}
 cursor={'pointer'}
->
+/>
 
-</Square>
 </SwiperSlide>
 )}
 
-</HStack>
+</Stack>
 </Swiper>
 </Box>
 </Box>
