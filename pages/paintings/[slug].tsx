@@ -1,13 +1,10 @@
 import React, {Fragment } from 'react';
-import { useRouter } from 'next/router';
-import { motion, AnimatePresence } from 'framer-motion';
 import groq from 'groq';
 import { PaintingLayout } from '../../layouts';
 import { Glider } from '../../components';
 import { Close } from '../../components';
-import { AspectRatio, Box, Card, Image, Flex, Text, VStack } from '@chakra-ui/react';
-import { urlFor } from '../../lib/api';
-import client from '../../lib/sanity';
+import { Box, Card, Flex, Text, VStack} from '@chakra-ui/react';
+import { client } from '../../lib/sanity';
 
 
 type Props = {
@@ -17,85 +14,57 @@ type Props = {
 
 export default function Painting({ data }: Props) {
 
-const router = useRouter();
-
 return (
 <Fragment>
 <PaintingLayout>
 
-
-<Close props={`/paintings/#${data.order}`}/>
-
-<AnimatePresence>
-<motion.div 
-key={router.asPath}
-initial={{ opacity: 0, scale: 0 }}
-animate={{ opacity: 1, scale: 1 }}
-exit={{ opacity: 0, scale: 0 }}
-transition={{ delay: 0.1 , type: 'tween', ease: 'linear'}}
->
+<Close/>
 
 <Card className='details' position={'relative'} mt={['80px', '100px']} direction={['column-reverse', 'row']} >
 
-<Box  py={['20px', '40px']}  width={['100%','40%']}> 
+<Box   width={['100%','40%']}> 
 
-
-<Flex  alignItems={'flex-start'} height={'100%'}>
+<Flex  alignItems={'flex-start'} mt={['0','0']} height={'auto'}>
 <VStack alignItems={'start'}>
 
-<Text as={'p'} className={'name'} fontSize={'1rem'} >{data.title}</Text> 
+<Text as={'p'} className={'name'}  fontSize={'1rem'} >{data.title}</Text> 
 
-{data.size ? 
 <Text as={'p'} className={'size'} fontSize={'1rem'} >{data.size}</Text>
-: null
-}
+
+<Text as={'p'} className={'note'} fontSize={'1rem'} >{data.note}</Text>
+
  
-
-{data.price ? 
-<Text as={'p'} className={'price'} fontSize={'1rem'} >{data.price}</Text> 
-: null
-}
-
-{data.sold ? 
-<Text className='sold' fontSize={['1rem','1.25rem']} >Sold</Text>
-: null
-}
-
 </VStack>
 </Flex>
-</Box>
-<Box className='painting'  width={['100%','60%']}>
-<AspectRatio ratio={1}>
-<Image src={urlFor(data.image).url()} />
-</AspectRatio>
+<Text as={'p'} className={'more'}  fontSize={['1rem','1.25rem']}>Further Images</Text>
 </Box>
 
 
+<Glider data={data} />
 </Card> 
-</motion.div>
-</AnimatePresence>
-</PaintingLayout>  
+</PaintingLayout> 
 </Fragment>
 )
 }
-const query = groq`*[_type == 'gallery' && slug.current == $slug][0]{
+const query = groq`*[_type == 'paintings' && slug.current == $slug][0]{
   title,
-  image,
-  large,
+  painting,
+  detailone,
+  detailtwo,
+  detailthree,
   slug,
   size,
-  price,
-  sold,
+  note,
   order,
   views,
   "slides": views[],
   "current": { 
     "slug": slug.current,title,order 
   },
-  "next": *[_type == 'gallery' && ^._createdAt < _createdAt] | order(_createdAt asc)[0]{ 
+  "next": *[_type == 'paintings' && ^._createdAt < _createdAt] | order(_createdAt asc)[0]{ 
       "slug": slug.current,title,order
   },
-  "previous": *[_type == 'gallery' && ^._createdAt > _createdAt] | order(_createdAt asc)[-1]{ 
+  "previous": *[_type == 'paintings' && ^._createdAt > _createdAt] | order(_createdAt asc)[-1]{ 
       "slug": slug.current, title,order
   },
 }`
@@ -113,7 +82,7 @@ export async function getStaticProps({ params }: any) {
 }
 
 export const getStaticPaths = async () => {
-  const paths = await client.fetch(groq`*[_type == "gallery" && defined(slug.current)][].slug.current`)
+  const paths = await client.fetch(groq`*[_type == "paintings" && defined(slug.current)][].slug.current`)
   return {
     paths: paths.map((slug: {slug: any}) => ({params: {slug}})),
     fallback: 'blocking',

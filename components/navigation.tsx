@@ -1,15 +1,23 @@
 import React, { Fragment, useState } from 'react';
 import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Squash as Hamburger } from 'hamburger-react'
+import { Squash as Hamburger } from 'hamburger-react';
 import { Box, Flex, List, ListItem } from '@chakra-ui/react';
 import { item } from '../lib/types'; 
+
+
 
 
 export const Navigation = () => {
 
 
 const [ isOpen, setOpen ] = useState(false);
+
+const icon = {
+    hidden: { scale: 0, opacity: 0 },
+    show: { scale: 1, opacity: 1, transition: { delay: 0.5,  duration: 1,  ease: 'easeInOut'}},
+    exit: { scale: 0, opacity: 0 }
+}
 
 const menu = {
     initial: { y: '-2000px', height: 0, opacity: 0, transition: { duration: 2, type: 'tween'}},
@@ -40,14 +48,9 @@ href: '/paintings',
 key: '3',
 },
 {
-label: 'Studio Art',
-href: '/studio',
-key: '4'
-},
-{
 label: 'Contact',
 href: '/contact',
-key: '5',
+key: '4',
 }
 ]
 
@@ -56,12 +59,17 @@ return (
 
 <Fragment>
 
-<Box className='toggle' zIndex={'4000'}>
-<Hamburger toggled={isOpen} toggle={setOpen} size={24} color={isOpen ? '#ffffff' : '#010101'} />
+
+<Box 
+as={motion.div}
+className={'icon'} 
+mt={'-1'}
+cursor={'pointer'}
+>
+<Hamburger  toggled={isOpen} toggle={setOpen}  size={20} />  
 </Box>
 
 <AnimatePresence>
-
 {isOpen && ( 
 <Box 
 className="navigation"
@@ -71,6 +79,8 @@ initial={"initial"}
 animate={"open"}
 exit={"closed"}
 >
+
+
 
 <Flex className='menu'>
 <List  

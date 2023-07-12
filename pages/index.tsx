@@ -14,10 +14,11 @@ export default function Home ({ props}: Props) {
 return (
 
 <Fragment>
-<HomeLayout> 
+<HomeLayout>
 {props.map((prop: { _id: any; image: any; title: string; content: any; }) =>
 <Image boxSize={'full'} position={'relative'} objectFit='fill' src={urlFor(prop.image).url()}   />
 )}
+
 </HomeLayout>
 </Fragment>
 )

@@ -1,32 +1,34 @@
 import React, { Fragment } from 'react';
-import Link from 'next/link';
-import { Icon } from '@chakra-ui/react';
+import { useRouter } from 'next/router';
+import { Button, Icon } from '@chakra-ui/react';
 import { TfiClose } from 'react-icons/tfi';
 
-type Props = {
-    props: any;
-  }
- 
 
-export const Close = ({props}: Props) => {
+export const Close = () => {
+
+const router = useRouter();
 
 return (
 
 
 <Fragment>
-<Link  href={props} >
-<Icon as={TfiClose}
+<Button
 position={'fixed'}
 top={['30px','30px']}
-right={['20px','30px']}
+right={['0px','30px']}
+variant={'ghost'}
+_hover={{ bg: 'none'}}
+onClick={() => router.back()}
+zIndex={'5000'}
+>
+<Icon as={TfiClose}
 width={'24px'}
 height={'24px'}
 cursor={'pointer'}
 color={'#A0AEC0'}
 _hover={{color: '#4A5568'}}
-zIndex={'5000'}
 />
-</Link>
+</Button>
 </Fragment> 
   
 )

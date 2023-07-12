@@ -18,7 +18,7 @@ width={'100%'}
 >
 <Stack direction={['column', 'row']}>
 <Text as={'h5'} fontSize={['0.5rem', '0.5rem']} >
-Copyright © 2023 Katharine Lightfoot
+Copyright © 2023 Andrew Norrey
 </Text>
 
 <Link href={'/'}>

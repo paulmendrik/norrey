@@ -4,8 +4,8 @@ import { Footer } from './footer';
 import { Navigation } from './navigation';
 import { Next } from './next';
 import { Previous } from './previous';
-import { Slider } from './slider';
+import { Gallery } from './gallery';
 import { Glider } from './swiper';
 
-export {Close, Header, Footer, Navigation, Next, Previous, Slider, Glider};
+export {Close, Header, Footer, Gallery, Navigation, Next, Previous, Glider};
 
