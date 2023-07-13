@@ -2,7 +2,7 @@ import React, { Fragment } from 'react';
 import { PortableText } from '@portabletext/react';
 import { urlFor } from '../lib/api';
 import { PageLayout } from '../layouts';
-import {AspectRatio, Box, Image, Text } from '@chakra-ui/react';
+import {Box, Image, Text } from '@chakra-ui/react';
 import { getAboutPage } from '../lib/api';
 
 type Props = {
