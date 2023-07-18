@@ -3,7 +3,6 @@ import { motion } from 'framer-motion';
 import { Header } from '../components';
 import { Box} from '@chakra-ui/react';
 
-
 export const HomeLayout = ({ children }: any) => {
 
 

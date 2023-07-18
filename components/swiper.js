@@ -22,7 +22,7 @@ slidesPerView={1}
 >
 {data.slides.map((slide, i) =>
 <SwiperSlide key={i}>
-<Image src={urlFor(slide.image.asset).url()} />
+<Image src={urlFor(slide.image.asset).url()} objectFit='cover' width={'100%'} />
 </SwiperSlide>
 )}
 </Swiper>
