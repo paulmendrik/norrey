@@ -5,7 +5,9 @@ import { Navigation } from './navigation';
 import { Next } from './next';
 import { Previous } from './previous';
 import { Gallery } from './gallery';
+import { Surface } from './surface';
+import { Willow } from './willow';
 import { Glider } from './swiper';
 
-export {Close, Header, Footer, Gallery, Navigation, Next, Previous, Glider};
+export {Close, Header, Footer, Gallery, Surface, Willow, Navigation, Next, Previous, Glider};
 
