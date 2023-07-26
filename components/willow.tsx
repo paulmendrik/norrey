@@ -16,7 +16,7 @@ show: { opacity: 1, y: 0, transition: { staggerChildren: 1, type: 'tween', durat
 return (
 <GalleryLayout>
 <Box pb={'4'}>
-<Text as={'h1'} className={'title'} pt={['1.5rem', '2rem']} fontSize={['1.2rem', '1.4rem']}>Paintings</Text>
+<Text as={'h1'} className={'title'} pt={['1.5rem', '2rem']} fontSize={['1.2rem', '1.4rem']}>Weeping Willow Water</Text>
 </Box>
 <ResponsiveMasonry columnsCountBreakPoints={{350: 1, 750: 2, 900: 3}}>
 <Masonry  gutter='10px'>

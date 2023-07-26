@@ -2,7 +2,9 @@ import React, { Fragment, useState } from 'react';
 import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Squash as Hamburger } from 'hamburger-react';
-import { Box, Collapse, Flex, List, ListItem, useDisclosure } from '@chakra-ui/react';
+import { Box, Button, Collapse, Flex, List, ListItem, Stack, useDisclosure } from '@chakra-ui/react';
+import { RiArrowUpSFill, RiArrowDownSFill } from 'react-icons/ri'
+import { HiPlusSm, HiMinusSm } from 'react-icons/hi'
 
 
 export const Navigation = () => {
@@ -56,25 +58,34 @@ exit={"closed"}
 <Flex className='menu'>
 <List  
 mt={['-120','0']}
+fontSize={['1.2rem', '1.6rem']}
+lineHeight={['1.6rem', '1.8rem']}
 as={motion.div} 
 variants={container}
 initial="hidden"
 whileInView={"show"}
 >
-<ListItem  py={['2px', '4px']} fontSize={['1.2rem', '1.6rem']} lineHeight={['1.6rem', '1.8rem']}>
+<ListItem  py={['2px', '4px']} >
 <Link href='/' onClick={closeMenu} passHref >Home</Link>
 </ListItem>
-<ListItem  py={['2px', '4px']} fontSize={['1.2rem', '1.6rem']} lineHeight={['1.6rem', '1.8rem']}>
+<ListItem  py={['2px', '4px']} >
 <Link href='/about' onClick={closeMenu} passHref >About</Link>
 </ListItem>
-<ListItem  onClick={onToggle} py={['2px', '4px']} fontSize={['1.2rem', '1.6rem']} lineHeight={['1.6rem', '1.8rem']} cursor={'pointer'}>
+<ListItem  onClick={onToggle} py={['2px', '4px']} cursor={'pointer'}>
+<Button 
+variant={'link'} 
+fontSize={['1.2rem', '1.6rem']} 
+color={'white'}
+rightIcon={isOpen ? <HiMinusSm/> : <HiPlusSm/>}
+>
 Paintings
+</Button>
 </ListItem>
 <Collapse in={isOpen} animateOpacity>
-<List>
-<ListItem><Link href='/paintings' onClick={closeMenu} passHref >Paintings</Link></ListItem> 
-<ListItem><Link href='/surface' onClick={closeMenu} passHref >Surface</Link></ListItem>  
-<ListItem><Link href='/willow' onClick={closeMenu} passHref >Willow</Link></ListItem>  
+<List fontSize={['1rem', '1.4rem']} >
+<ListItem py={['2px', '2px']} ><Link href='/paintings' onClick={closeMenu} passHref >Another World</Link></ListItem> 
+<ListItem py={['2px', '2px']} ><Link href='/surface' onClick={closeMenu} passHref >Surface</Link></ListItem>  
+<ListItem py={['2px', '2px']} ><Link href='/willow' onClick={closeMenu} passHref >Weeping Willow Water</Link></ListItem>  
 </List>
 </Collapse>
 <ListItem  py={['2px', '4px']} fontSize={['1.2rem', '1.6rem']} lineHeight={['1.6rem', '1.8rem']}>
