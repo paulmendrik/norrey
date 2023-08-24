@@ -29,17 +29,22 @@ return (
 
 <Text as={'p'} className={'name'}  fontSize={'1rem'} >{data.title}</Text> 
 
+{data.size ?
 <Text as={'p'} className={'size'} fontSize={'1rem'} >{data.size}</Text>
-
+:
+<Text as={'p'} fontSize={'1rem'} ></Text>
+}
+{data.note ?
 <Text as={'p'} className={'note'} fontSize={'1rem'} >{data.note}</Text>
+:
+<Text as={'p'} fontSize={'1rem'} ></Text>
+}
 
  
 </VStack>
 </Flex>
 <Text as={'p'} className={'more'}  fontSize={['1rem','1.25rem']}>Further Images</Text>
 </Box>
-
-
 <Glider data={data} />
 </Card> 
 </PaintingLayout> 
