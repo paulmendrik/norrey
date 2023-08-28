@@ -3,7 +3,6 @@ import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Squash as Hamburger } from 'hamburger-react';
 import { Box, Button, Collapse, Flex, List, ListItem, Stack, useDisclosure } from '@chakra-ui/react';
-import { RiArrowUpSFill, RiArrowDownSFill } from 'react-icons/ri'
 import { HiPlusSm, HiMinusSm } from 'react-icons/hi'
 
 
